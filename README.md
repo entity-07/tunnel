@@ -19,15 +19,15 @@ also:
 
 so the scope of this app is quite small
 - UI Related stuff
-  - [x ] Get UI *working*
-  - [  ] Style the UI
+  - [x] Get UI *working*
+  - [ ] Style the UI
 
 - Bluetooth related stuff
-  - [  ] Bluetooth search for other users who have the app running
-  - [  ] Bluetooth direct messaging
-  - [  ] Saving certain users as alternate names
-  - [  ] Blocking certain users
-  ~- [  ] Bluetooth mesh and message hopping (not happening. i said its out of scope)~
+  - [ ] Bluetooth search for other users who have the app running
+  - [ ] Bluetooth direct messaging
+  - [ ] Saving certain users as alternate names
+  - [ ] Blocking certain users
+  ~- [ ] Bluetooth mesh and message hopping (not happening. i said its out of scope)~
 
 thats all i can think of atm
 
