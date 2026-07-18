@@ -1,4 +1,4 @@
-# TUNNEL
+# tunnel
 
 ###### This an app im working on for my cs ia project.
 yk bitchat?
@@ -8,8 +8,7 @@ bcs actually getting message hopping and a bluetooth mesh to work will take far 
 
 also:
 ### DISCLAIMER: AI WAS USED IN THE CREATION OF THIS APPLICATION 
--# technically
-
+technically
 - No, none of the code in this repo is AI generated.
 - But I'm also using this as a learning experience.
 - So AI was used in the context of learning new concepts necessary for this project (and a few debugging issues)
@@ -27,7 +26,7 @@ so the scope of this app is quite small
   - [ ] Bluetooth direct messaging
   - [ ] Saving certain users as alternate names
   - [ ] Blocking certain users
-  ~- [ ] Bluetooth mesh and message hopping (not happening. i said its out of scope)~
+  - [ ] ~Bluetooth mesh and message hopping (not happening. i said its out of scope)~
 
 thats all i can think of atm
 
