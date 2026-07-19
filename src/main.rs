@@ -54,13 +54,18 @@ enum Message {
 
 impl App {
     fn render_nav_panel(&self) -> Element<'_, Message> {
-        return widget::column![
-            widget::button(widget::text!("Home")).on_press(Message::SwitchScreen(Screen::Home)),
-            widget::button(widget::text!("Signal Search"))
-                .on_press(Message::SwitchScreen(Screen::Search)),
-            widget::button(widget::text!("Chats")).on_press(Message::SwitchScreen(Screen::Chats)),
-        ]
-        .spacing(10)
+        return widget::container(
+            widget::column![
+                widget::button(widget::text!("Home")).on_press(Message::SwitchScreen(Screen::Home)),
+                widget::button(widget::text!("Signal Search"))
+                    .on_press(Message::SwitchScreen(Screen::Search)),
+                widget::button(widget::text!("Chats"))
+                    .on_press(Message::SwitchScreen(Screen::Chats)),
+            ]
+            .spacing(10),
+        )
+        .height(iced::Fill)
+        .style(widget::container::bordered_box)
         .padding(10)
         .into();
     }
@@ -79,23 +84,36 @@ impl App {
 
     fn render_history(&self, idx: usize) -> Element<'_, Message> {
         let to_render = &self.contacts[idx];
-        return widget::container(widget::column![
-            widget::column(
-                to_render
-                    .history
-                    .history
-                    .iter()
-                    .map(|msg| widget::text(&msg.content).into()),
-            ),
-            widget::text_input("smth to say?", &self.current_input)
-                .on_input(Message::InputChanged)
-                .on_submit(Message::SendChat)
-        ])
+        return widget::container(
+            widget::column![
+                widget::scrollable(
+                    widget::column(to_render.history.history.iter().map(|msg| {
+                        widget::container(widget::text(&msg.content))
+                            .style(widget::container::bordered_box)
+                            .padding(10)
+                            .into()
+                    }),)
+                    .spacing(10)
+                    .width(iced::Fill),
+                )
+                .height(iced::Fill),
+                widget::text_input("smth to say?", &self.current_input)
+                    .on_input(Message::InputChanged)
+                    .on_submit(Message::SendChat)
+            ]
+            .spacing(5),
+        )
         .into();
     }
 
     fn view(&self) -> Element<'_, Message> {
-        return widget::row![self.render_nav_panel(), self.show_chats_or_history()].into();
+        return widget::container(widget::row![
+            self.render_nav_panel(),
+            widget::space().width(10).height(iced::Fill),
+            self.show_chats_or_history()
+        ])
+        .padding(10)
+        .into();
     }
 
     fn render_home(&self) -> Element<'_, Message> {
@@ -140,7 +158,7 @@ impl App {
                 self.focused_conversation = None;
             }
             Message::SendChat => {
-                if !self.current_input.is_empty() {
+                if !self.current_input.trim().is_empty() {
                     let Some(idx) = self.focused_conversation else {
                         return;
                     };
